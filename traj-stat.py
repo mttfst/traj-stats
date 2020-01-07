@@ -1,7 +1,7 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
-# In[58]:
+# In[ ]:
 
 
 from netCDF4 import Dataset
@@ -55,7 +55,7 @@ def grad2meter(grad):
     return meter
 
 
-# In[59]:
+# In[ ]:
 
 
 totaltime=time.time()
@@ -195,8 +195,7 @@ print('│  done '+str(int(time.time()-stime))+'s')
 print('│')
 
 
-
-# In[60]:
+# In[ ]:
 
 
 print('├──find start and end points')
@@ -293,7 +292,13 @@ print('│  └─done '+str(int(time.time()-stime))+'s')
 print('│')
 
 
-# In[61]:
+# In[ ]:
+
+
+
+
+
+# In[ ]:
 
 
 print('├──create stat values')
@@ -304,6 +309,7 @@ st_max_height = np.zeros(len(traid))
 st_mean_height = np.zeros(len(traid))
 st_distance_2d = np.zeros(len(traid))
 st_distance_z = np.zeros(len(traid))
+st_depo_z = np.zeros(len(traid))
 st_time = np.zeros(len(traid))
 
 st_test = np.zeros(10000)
@@ -313,6 +319,7 @@ for nid in range(len(traid)):
     i=traid[nid]
     st_max_height[nid] = np.max(z[trastart[nid]:trastop[nid],i])
     st_mean_height[nid] = np.mean(z[trastart[nid]:trastop[nid],i])
+    st_depo_z[nid] = z[trastop[nid],i]
     
 
     
@@ -330,7 +337,13 @@ print('│  └─done '+str(int(time.time()-stime))+'s')
 print('│')
 
 
-# In[62]:
+# In[ ]:
+
+
+
+
+
+# In[ ]:
 
 
 fig, ax = plt.subplots(2,3,figsize=(20,10),tight_layout=True)
@@ -340,9 +353,9 @@ fig, ax = plt.subplots(2,3,figsize=(20,10),tight_layout=True)
 # the histogram of the data
 
 num_bins=100
-var_names=[st_distance_2d/1000,st_distance_2d/1000+st_distance_z/1000,st_distance_z,st_max_height,st_mean_height,st_time]
-title_names=['Horizontal distance','Horizontal + vertical distance','Vertical distance','Maximum height','Mean height','Travel time']
-x_names=['distance [km]','distance [km]','distance [m]','height [m]','height [m]','time[h]']
+var_names=  [st_distance_2d/1000  ,st_distance_z      ,st_depo_z          ,st_max_height    ,st_mean_height   ,st_time]
+title_names=['Horizontal distance','Vertical distance','Deposition height','Maximum height' ,'Mean height'    ,'Travel time']
+x_names=    ['distance [km]'      ,'distance [m]'     ,'height [m amsl]'  ,'height [m amsl]','height [m amsl]','time[h]']
 
 i=0
 j=0
@@ -375,4 +388,10 @@ fname=datetime.datetime.now().strftime("%Y%m%d%H%M")+'.png'
 plt.tight_layout()
 plt.savefig(fname,dpi=500)
 plt.show()
+
+
+# In[ ]:
+
+
+
 
