@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[58]:
@@ -138,16 +138,16 @@ for fn in namelist[:]:
                 znew=np.zeros((np.asarray(inz).shape[0],z.shape[1]))
                 znew[:z.shape[0],:]=z
                 znew[z.shape[0]:,:]=z[-1,:]
-
-                zrelnew=np.zeros(np.asarray(inzrel).shape)
+                
+                zrelnew=np.zeros((np.asarray(inzrel).shape[0],zrel.shape[1]))
                 zrelnew[:zrel.shape[0],:]=zrel
                 zrelnew[zrel.shape[0]:,:]=zrel[-1,:]
 
-                rlatnew=np.zeros(np.asarray(inlat).shape)
+                rlatnew=np.zeros((np.asarray(inlat).shape[0],rlat.shape[1]))
                 rlatnew[:z.shape[0],:]=rlat
                 rlatnew[z.shape[0]:,:]=rlat[-1,:]
 
-                rlonnew=np.zeros(np.asarray(inlon).shape)
+                rlonnew=np.zeros((np.asarray(inlon).shape[0],rlon.shape[1]))
                 rlonnew[:rlon.shape[0],:]=rlon
                 rlonnew[rlon.shape[0]:,:]=rlon[-1,:]
 
@@ -193,6 +193,7 @@ for fn in namelist[:]:
 
 print('│  done '+str(int(time.time()-stime))+'s')
 print('│')
+
 
 
 # In[60]:
@@ -292,12 +293,6 @@ print('│  └─done '+str(int(time.time()-stime))+'s')
 print('│')
 
 
-# In[ ]:
-
-
-
-
-
 # In[61]:
 
 
@@ -333,12 +328,6 @@ for nid in range(len(traid)):
     
 print('│  └─done '+str(int(time.time()-stime))+'s')
 print('│')
-
-
-# In[ ]:
-
-
-
 
 
 # In[62]:
@@ -386,10 +375,4 @@ fname=datetime.datetime.now().strftime("%Y%m%d%H%M")+'.png'
 plt.tight_layout()
 plt.savefig(fname,dpi=500)
 plt.show()
-
-
-# In[ ]:
-
-
-
 
