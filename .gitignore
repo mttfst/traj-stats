@@ -136,3 +136,8 @@ venv.bak/
 
 # Data
 *.nc
+
+# Output
+*.png
+*.pdf
+*.ps
